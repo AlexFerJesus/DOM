@@ -1,26 +1,31 @@
-console.log("Olá mundo!");
-
-const botao = document.getElementById("BotaoF");
-
-console.log(botao);
-
-botao.addEventListener('click', () => alert("Fui Criado!!!"));
-botao.addEventListener('click', () => { 
-    alert ("Assédio");
-});
-
-const divs = document.getElementsByTagName("div");
-divs.forEach((item, key) => {
-    item.addEventListener("Click", () => {
-        alert("click na div" + key);
-    });
-});
-
-const qualBotao = (evt) => {
-    alert('Você clicou em "${evt.correntTarget.textContent}"');
+const removeErro = (evt) => {
+    evt.currentTarget.classList.remove("Invalido");
 }
 
-const botoes = document.getElementsByTagName("div");
-divs.forEach(botao => {
-    botao.addEventListener("click", qualBotao);
-});
+const processarForm = (evt) => {
+    evt.preventDefalt();
+
+    const usuario = document.getElementById("usuario");
+    const senha = document.getElementById("senha");
+    const repetesenha = document.getElementById("repetesenha");
+    const cidade = document.getElementById("cidade");
+    const deacordo = document.getElementById("deacordo");
+
+    if (usuario.value.trim().length === 0) {
+        usuario.classList.add("invalido");
+        usuario.focus();
+        return;
+    }
+
+    if (senha.value.trim().length < 8) {
+        senha.classList.add("invalido");
+        senha.focus();
+        return;
+    }
+
+    if (repetesenha.value !== senha.value) {
+        repetesenha.classList.add("invalido");
+        repetesenha.focus();
+        return;
+    }
+}
