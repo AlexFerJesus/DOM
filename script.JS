@@ -1,31 +1,11 @@
-const removeErro = (evt) => {
-    evt.currentTarget.classList.remove("Invalido");
+const iniciar => () => {
+    console.log("antes do fetch")
+
+    const response =  fetch ('https://github.com/AlexFerJesus')
+        .then((response) => response.json())
+        .then((dados) => exibeUsuario)
+
+    console.log("depois do fetch");
 }
 
-const processarForm = (evt) => {
-    evt.preventDefalt();
-
-    const usuario = document.getElementById("usuario");
-    const senha = document.getElementById("senha");
-    const repetesenha = document.getElementById("repetesenha");
-    const cidade = document.getElementById("cidade");
-    const deacordo = document.getElementById("deacordo");
-
-    if (usuario.value.trim().length === 0) {
-        usuario.classList.add("invalido");
-        usuario.focus();
-        return;
-    }
-
-    if (senha.value.trim().length < 8) {
-        senha.classList.add("invalido");
-        senha.focus();
-        return;
-    }
-
-    if (repetesenha.value !== senha.value) {
-        repetesenha.classList.add("invalido");
-        repetesenha.focus();
-        return;
-    }
-}
+document.addEventListener("DOMContentLoaded", iniciar);
